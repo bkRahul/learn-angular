@@ -13,12 +13,31 @@ import { Component } from '@angular/core';
   ],
 })
 export class ServersComponent {
-  serverStatus = 'online';
-  allowNewServer = true;
+  serverStatus = false;
+  serverName = '';
+  serverCreationStatus = '';
+  servers = [];
   constructor() {
     setTimeout(() => {
-      this.serverStatus = 'offline';
-      this.allowNewServer = false;
+      this.serverStatus = true;
     }, 5000);
   }
+
+  toggleServerStatus() {
+    this.serverStatus = !this.serverStatus;
+  }
+
+  onServerCreateHandler() {
+    this.servers.push(this.serverName);
+    this.serverCreationStatus = `Server was created with name ${this.serverName}`;
+  }
+
+  getServerStatusColor() {
+    return this.serverStatus ? 'green' : 'red';
+  }
+
+  // one way data binding
+  // handleAddServer(event: Event) {
+  //   this.serverName = (<HTMLInputElement>event.target).value;
+  // }
 }

@@ -1,11 +1,46 @@
 <div class="text-center">
-  <p>
-    Server Status <b>{{ serverStatus }}</b>
-  </p>
-  <app-server />
-  <app-server />
-  <app-server />
-  <button class="btn btn-primary" [disabled]="!allowNewServer">
-    Add Server
-  </button>
+  <div class="container d-flex justify-content-between align-items-center">
+    <span>
+      Server Status
+      <b [ngStyle]="{ color: getServerStatusColor() }">{{
+        serverStatus ? "Online" : "Offline"
+      }}</b>
+    </span>
+    <button class="btn btn-primary" (click)="toggleServerStatus()">
+      Toggle Server Status
+    </button>
+  </div>
+
+  <app-server *ngFor="let server of servers" />
+
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- one way databinding -->
+    <!-- <section>
+      <input
+        type="text"
+        name="server"
+        id="add-server"
+        placeholder="one-way-binding"
+        (input)="handleAddServer($event)"
+      />
+      <p>{{ serverName }}</p>
+    </section> -->
+    <section>
+      <input
+        type="text"
+        name="server"
+        id="add-server"
+        placeholder="two-way-binding"
+        [(ngModel)]="serverName"
+      />
+      <p class="ml-4">{{ serverCreationStatus }}</p>
+    </section>
+    <button
+      class="btn btn-primary"
+      [disabled]="!serverStatus"
+      (click)="onServerCreateHandler()"
+    >
+      Add Server
+    </button>
+  </div>
 </div>
