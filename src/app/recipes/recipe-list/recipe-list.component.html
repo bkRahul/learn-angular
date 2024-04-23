@@ -1,0 +1,49 @@
+<section class="mb-5 recipe-list">
+  <div class="section-container">
+    <div class="recipe-list__heading section-heading">
+      <h1 class="section-heading">Browse our featured recipes</h1>
+    </div>
+    <div class="recipe-list__content d-grid">
+      <div class="recipe-item" *ngFor="let recipe of recipes">
+        <div class="recipe-item__image">
+          <img [src]="recipe.imgUrl" [alt]="recipe.description" width="100%" />
+        </div>
+
+        <div class="recipe-item__content">
+          <div style="width: 8%; height: 2px" class="tiny-accent-line"></div>
+          <h3 class="featured-recipe-name">{{ recipe.name }}</h3>
+          <p class="mg-bottom-40px">
+            Lorem ipsum dolor sit amet conse dolo ctetur adipiscing elit dictum.
+          </p>
+          <div class="divider"></div>
+          <div class="d-flex about-recipe-content">
+            <div class="about-the-recipe-item">
+              <img
+                src="https://assets-global.website-files.com/61003f4656f603345ac4b0ab/6101ab8696e46ce366c217a0_preparation-time-recipes-x-webflow-template-brix-templates.svg"
+                alt="Clock Icon - Diet X Webflow Template"
+                class="about-the-recipe-icon"
+              />
+              <div class="about-the-recipe-text">45 min</div>
+            </div>
+            <div class="about-the-recipe-item">
+              <img
+                src="https://assets-global.website-files.com/61003f4656f603345ac4b0ab/6101ab862fcd64320cff8ff1_portions-recipes-x-webflow-template-brix-templates.svg"
+                alt="User Icon - Diet X Webflow Template"
+                class="about-the-recipe-icon"
+              />
+              <div class="about-the-recipe-text">8 Servings</div>
+            </div>
+            <div class="about-the-recipe-item">
+              <img
+                src="https://assets-global.website-files.com/61003f4656f603345ac4b0ab/6101ab86e010cc8c2afa88ae_difficulty-recipes-x-webflow-template-brix-templates.svg"
+                alt="Graph Icon - Diet X Webflow Template"
+                class="about-the-recipe-icon"
+              />
+              <div class="about-the-recipe-text">hard</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
