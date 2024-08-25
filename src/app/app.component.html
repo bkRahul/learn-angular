@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="col-md-6"><app-servers /></div>
+  <div class="col-md-6">
+    <!-- we are listening to the serverCreated event using onServerAdded -->
+    <app-servers (serverCreated)="onServerAdded($event)" />
+  </div>
   <div class="col-md-6"></div>
+  <!-- pass data [serverName] to child component -->
+  <app-status *ngFor="let server of servers" [serverName]="server" />
 </div>
-
-<router-outlet />

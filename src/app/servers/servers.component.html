@@ -11,7 +11,8 @@
     </button>
   </div>
 
-  <app-server *ngFor="let server of servers" />
+  <!-- pass data [singleServer] to child component -->
+  <app-server *ngFor="let server of servers" [singleServer]="server" />
 
   <div class="d-flex justify-content-between align-items-center">
     <!-- one way databinding -->
@@ -25,7 +26,8 @@
       />
       <p>{{ serverName }}</p>
     </section> -->
-    <section>
+    <!-- two way databinding -->
+    <!-- <section>
       <input
         type="text"
         name="server"
@@ -33,12 +35,22 @@
         placeholder="two-way-binding"
         [(ngModel)]="serverName"
       />
-      <p class="ml-4">{{ serverCreationStatus }}</p>
+    </section> -->
+    <!-- local refernces -->
+    <section>
+      <input
+        type="text"
+        name="server"
+        id="add-server"
+        placeholder="two-way-binding"
+        #serverNameInput
+      />
     </section>
+
     <button
       class="btn btn-primary"
       [disabled]="!serverStatus"
-      (click)="onServerCreateHandler()"
+      (click)="onAddServer(serverNameInput)"
     >
       Add Server
     </button>

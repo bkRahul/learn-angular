@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-servers',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     `
       div {
         border: 1px solid blue;
-        padding: 10px 15px;
+        padding: 8px 12px;
       }
     `,
   ],
@@ -17,19 +17,23 @@ export class ServersComponent {
   serverName = '';
   serverCreationStatus = '';
   servers = [];
+
+  // @Output decorator makes the serverCreated event available to the parent component.
+  // EventEmitter is used to emit own events it can be typed with a generic type to indicate the
+  // kind of data it will emit.
+  @Output() serverCreated = new EventEmitter<string>();
   constructor() {
-    setTimeout(() => {
-      this.serverStatus = true;
-    }, 5000);
+    this.serverStatus = true;
+  }
+
+  onAddServer(serverNameInput) {
+    this.servers.push(serverNameInput.value);
+    // Use the emit method of the EventEmitter to send data to the parent component.
+    this.serverCreated.emit(serverNameInput.value);
   }
 
   toggleServerStatus() {
     this.serverStatus = !this.serverStatus;
-  }
-
-  onServerCreateHandler() {
-    this.servers.push(this.serverName);
-    this.serverCreationStatus = `Server was created with name ${this.serverName}`;
   }
 
   getServerStatusColor() {
