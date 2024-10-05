@@ -1,9 +1,18 @@
 <div class="container">
   <div class="col-md-6">
     <!-- we are listening to the serverCreated event using onServerAdded -->
-    <app-servers (serverCreated)="onServerAdded($event)" />
+    <app-servers (serverCreated)="onServerAdded($event)" [servers]="servers" />
   </div>
   <div class="col-md-6"></div>
   <!-- pass data [serverName] to child component -->
-  <app-status *ngFor="let server of servers" [serverName]="server" />
+  <app-status *ngFor="let server of servers" [serverName]="server">
+    Server was created with name {{ server.name }}!
+  </app-status>
+
+  <button class="btn btn-secondary" (click)="onChangeStatus()">
+    change status
+  </button>
+  <button class="btn btn-primary mx-4" (click)="onDeleteServer()">
+    delete server
+  </button>
 </div>

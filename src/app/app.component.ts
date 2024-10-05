@@ -6,8 +6,17 @@ import { Component, Input } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  servers: string[] = ['server 1', 'server 2'];
+  servers: { name: string }[] = [{ name: 'server 1' }];
+
   onServerAdded(server: string) {
-    this.servers.push(server);
+    this.servers.push({ name: server });
+  }
+
+  onChangeStatus() {
+    this.servers[0].name = 'changed';
+  }
+
+  onDeleteServer() {
+    this.servers.splice(0, 1);
   }
 }

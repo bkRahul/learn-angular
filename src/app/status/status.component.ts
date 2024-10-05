@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class StatusComponent {
   // The @Input decorator is used to pass data from a parent component to a child component.
-  @Input() serverName: string;
+  @Input() serverName: { name: string };
 }
