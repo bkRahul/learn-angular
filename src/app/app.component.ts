@@ -1,22 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  servers: { name: string }[] = [{ name: 'server 1' }];
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
 
-  onServerAdded(server: string) {
-    this.servers.push({ name: server });
+  constructor() {
+    console.log(this.oddNumbers, this.evenNumbers);
   }
 
-  onChangeStatus() {
-    this.servers[0].name = 'changed';
-  }
-
-  onDeleteServer() {
-    this.servers.splice(0, 1);
+  onIntervalFired(val) {
+    if (val % 2 === 0) this.oddNumbers.push(val);
+    else this.evenNumbers.push(val);
   }
 }
